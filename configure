@@ -842,6 +842,7 @@ natdynlink_archive
 natdynlinkopts
 natdynlink
 supports_shared_libraries
+uplib
 mklib
 AR
 shebangscripts
@@ -3283,6 +3284,7 @@ OCAML_VERSION_SHORT=5.1
 # Note: This is present for the flexdll bootstrap where it exposed as the old
 # TOOLPREF variable. It would be better if flexdll where updated to require
 # WINDRES instead.
+
 
 
 
@@ -13251,6 +13253,7 @@ fi
   *) :
 
     mklib="rm -f \$(1) && ${AR} rc \$(1) \$(2)"
+    uplib="${AR} ru \$(1) \$(2)"
    ;;
 esac
 
@@ -20962,9 +20965,9 @@ cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
   for (key in D) D_is_set[key] = 1
   FS = ""
 }
-/^[\t ]*#[\t ]*(define|undef)[\t ]+$ac_word_re([\t (]|\r?\$)/ {
+/^[\t ]*#[\t ]*(define|undef)[\t ]+$ac_word_re([\t (]|\$)/ {
   line = \$ 0
-  split(line, arg, /[ \r\t]/)
+  split(line, arg, " ")
   if (arg[1] == "#") {
     defundef = arg[2]
     mac1 = arg[3]
@@ -21822,5 +21825,3 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 printf "%s\n" "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
-
-
